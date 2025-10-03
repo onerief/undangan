@@ -10,10 +10,11 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Custom Styles & Fonts */
+        /* Custom Styles & Fonts - TEMA ADAT JAWA (Coklat Tua & Linen) */
         :root {
-            --primary-color: #6a4c93; /* Ungu Anggur */
-            --secondary-color: #e8d9c5; /* Krem Muda */
+            --primary-color: #4E342E; /* Coklat Tua (Traditional Brown) */
+            --secondary-color: #FAF0E6; /* Linen (Light Cream/Beige) */
+            --accent-color: #CC9900; /* Gold/Kuning Emas */
             --text-color: #333333;
         }
 
@@ -25,7 +26,8 @@
         }
 
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://placehold.co/1080x1920/333333/ffffff?text=Prewedding+Photo+Placeholder');
+            /* URL Sampul Utama diganti dengan file lokal: hero.jpg */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('hero.jpg');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -40,9 +42,15 @@
         }
 
         .section-bg {
-            background-color: white;
+            /* [UPDATE] Latar belakang diubah menjadi motif Batik (Ganti URL ini dengan file motif batik Anda) */
+            background-image: url('batik_motif.png'); 
+            background-repeat: repeat; /* Agar motif berulang di seluruh latar */
+            background-attachment: scroll;
+            background-color: var(--secondary-color); /* Warna fallback/dasar jika gambar gagal dimuat */
             padding: 3rem 1.5rem;
         }
+        
+        /* Tambahan: Pastikan kotak di dalam section tetap solid putih/krem agar teks tetap mudah dibaca */
 
         /* Styling the scrollbar for aesthetics */
         ::-webkit-scrollbar {
@@ -108,14 +116,14 @@
             <p class="text-sm text-gray-500 mb-6">Mohon maaf jika terdapat kesalahan penulisan nama dan gelar.</p>
 
             <button id="openInvitationButton" 
-                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+                    class="w-full text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
+                    style="background-color: var(--primary-color); hover-bg-color: #5D4037;">
                 <i class="fas fa-envelope-open-text mr-2"></i> Buka Undangan
             </button>
         </div>
         <audio id="backgroundMusic" loop>
-            <!-- Musik Romantis Akustik Instrumental (Contoh dari soundhelix) -->
-            <!-- Catatan: Anda harus mengganti URL ini dengan musik MP3 yang Anda miliki di hosting Anda -->
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+            <!-- Ganti 'music.mp3' dengan nama file MP3 lagu romantis Anda yang ditempatkan di folder yang sama -->
+            <source src="music.mp3" type="audio/mpeg"> 
             Browser Anda tidak mendukung elemen audio.
         </audio>
     </div>
@@ -139,6 +147,7 @@
         </section>
 
         <!-- Bagian 2: Ayat Pembuka -->
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="pembuka" class="section-bg text-center">
             <div class="max-w-2xl mx-auto">
                 <h2 class="text-2xl title-font font-semibold mb-4 text-gray-700">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
@@ -150,16 +159,18 @@
         </section>
 
         <!-- Bagian 3: Detail Mempelai -->
-        <section id="mempelai" class="section-bg bg-secondary-color">
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
+        <section id="mempelai" class="section-bg">
             <h2 class="text-3xl title-font font-bold text-center mb-10" style="color: var(--primary-color);">Pasangan Bahagia</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
                 <!-- Mempelai Pria -->
                 <div class="p-6 rounded-xl shadow-lg bg-white">
-                    <img src="https://placehold.co/150x150/6a4c93/ffffff?text=Arif" alt="Foto Arif" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4 border-purple-200">
+                    <!-- URL Foto Profil Arif diganti menjadi file lokal: profil-arif.jpg -->
+                    <img src="profil-arif.jpg" alt="Foto Arif" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4" style="border-color: var(--secondary-color);">
                     <p class="text-4xl title-font font-bold" style="color: var(--primary-color);">Arif</p>
                     <p class="text-base font-semibold text-gray-800">(Arif Hidayat)</p>
                     <!-- DETAIL ORANG TUA ARIF -->
-                    <p class="text-gray-600 mt-2">Putra bungsu dari **Bapak Buyung (Alm)** dan **Ibu Rosilawati**</p>
+                    <p class="text-gray-600 mt-2">Putra bungsu dari Bapak Buyung (Alm) dan Ibu Rosilawati</p>
                     <div class="mt-4">
                         <a href="https://instagram.com/_ariefhd" target="_blank" class="text-gray-500 hover:text-pink-600 mx-2 text-xl">
                             <i class="fab fa-instagram"></i> @_ariefhd
@@ -168,11 +179,12 @@
                 </div>
                 <!-- Mempelai Wanita -->
                 <div class="p-6 rounded-xl shadow-lg bg-white">
-                    <img src="https://placehold.co/150x150/6a4c93/ffffff?text=Vuah" alt="Foto Marfuah" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4 border-purple-200">
+                    <!-- URL Foto Profil Vuah diganti menjadi file lokal: profil-vuah.jpg -->
+                    <img src="profil-vuah.jpg" alt="Foto Marfuah" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4" style="border-color: var(--secondary-color);">
                     <p class="text-4xl title-font font-bold" style="color: var(--primary-color);">Vuah</p>
                     <p class="text-base font-semibold text-gray-800">(Marfuah)</p>
                     <!-- DETAIL ORANG TUA MARFUAH -->
-                    <p class="text-gray-600 mt-2">Putri bungsu dari **Bapak Sairin** dan **Ibu Kosiyah**</p>
+                    <p class="text-gray-600 mt-2">Putri bungsu dari Bapak Sairin dan Ibu Kosiyah</p>
                     <div class="mt-4">
                         <a href="https://instagram.com/vuahhmr" target="_blank" class="text-gray-500 hover:text-pink-600 mx-2 text-xl">
                             <i class="fab fa-instagram"></i> @vuahhmr
@@ -183,6 +195,7 @@
         </section>
 
         <!-- Bagian 4: Detail Acara & Countdown -->
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="lokasi" class="section-bg text-center">
             <h2 class="text-3xl title-font font-bold mb-4" style="color: var(--primary-color);">Waktu & Tempat</h2>
             <p class="text-gray-600 mb-8">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
@@ -212,7 +225,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Detail Acara 1: Akad -->
-                <div class="p-6 rounded-xl shadow-lg bg-secondary-color text-gray-800">
+                <div class="p-6 rounded-xl shadow-lg text-gray-800" style="background-color: var(--secondary-color);">
                     <i class="fas fa-ring text-4xl mb-4" style="color: var(--primary-color);"></i>
                     <h3 class="text-2xl title-font font-semibold mb-2">Akad Nikah</h3>
                     <p class="font-medium">Rabu, 22 Oktober 2025</p>
@@ -221,11 +234,11 @@
                     <p class="text-sm">Dusun Sidomulyo, Kampung Donomulyo, Kec Banjit, Kab Way Kanan</p>
                 </div>
                 <!-- Detail Acara 2: Resepsi -->
-                <div class="p-6 rounded-xl shadow-lg bg-secondary-color text-gray-800">
+                <div class="p-6 rounded-xl shadow-lg text-gray-800" style="background-color: var(--secondary-color);">
                     <i class="fas fa-glass-cheers text-4xl mb-4" style="color: var(--primary-color);"></i>
                     <h3 class="text-2xl title-font font-semibold mb-2">Resepsi</h3>
                     <p class="font-medium">Rabu, 22 Oktober 2025</p>
-                    <p class="text-lg font-bold mb-4" style="color: var(--primary-color);">Pukul 08.00 WIB sampai dengan Selesai</p>
+                    <p class="text-lg font-bold mb-4" style="color: var(--primary-color);">Pukul 08.30 WIB sampai dengan Selesai</p>
                     <p class="text-sm">Lokasi Acara</p>
                     <p class="text-sm">Dusun Sidomulyo, Kampung Donomulyo, Kec Banjit, Kab Way Kanan</p>
                 </div>
@@ -233,59 +246,94 @@
 
             <!-- Google Maps -->
             <div class="mt-10 max-w-4xl mx-auto">
-                <div class="rounded-xl overflow-hidden shadow-xl border-2 border-purple-300">
+                <div class="rounded-xl overflow-hidden shadow-xl border-2" style="border-color: var(--primary-color);">
                     <!-- Link Google Maps yang diperbarui -->
                     <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d15902.943187123992!2d104.35787865!3d-4.6300188500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2sDusun%20Sidomulyo%20Kampung%20Donomulyo%20Kec%20Banjit%20Kab%20Way%20Kanan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                <a href="https://maps.app.goo.gl/S77HCmzkxmzXak7p9" target="_blank" class="mt-4 inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition duration-300 shadow-md">
+                <a href="https://maps.app.goo.gl/S77HCmzkxmzXak7p9" target="_blank" class="mt-4 inline-flex items-center px-4 py-2 text-white rounded-full hover:bg-opacity-90 transition duration-300 shadow-md" style="background-color: var(--primary-color);">
                     <i class="fas fa-map-marker-alt mr-2"></i> Buka di Google Maps
                 </a>
             </div>
         </section>
 
         <!-- Bagian 5: Galeri Foto -->
-        <section id="galeri" class="section-bg bg-gray-100">
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
+        <section id="galeri" class="section-bg">
             <h2 class="text-3xl title-font font-bold text-center mb-10" style="color: var(--primary-color);">Galeri Momen</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
-                <!-- Ganti placeholder dengan URL foto prewedding Anda -->
-                <img src="https://placehold.co/400x400/805ad5/ffffff?text=Photo+1" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 1">
-                <img src="https://placehold.co/400x400/6a4c93/ffffff?text=Photo+2" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 2">
-                <img src="https://placehold.co/400x400/805ad5/ffffff?text=Photo+3" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 3">
-                <img src="https://placehold.co/400x400/6a4c93/ffffff?text=Photo+4" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 4">
-                <img src="https://placehold.co/400x400/805ad5/ffffff?text=Photo+5" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 5">
-                <img src="https://placehold.co/400x400/6a4c93/ffffff?text=Photo+6" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 6">
+                <!-- Ganti placeholder dengan nama file lokal: galeri-1.jpg -->
+                <img src="galeri-1.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 1">
+                <!-- Ganti placeholder dengan nama file lokal: galeri-2.jpg -->
+                <img src="galeri-2.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 2">
+                <!-- Ganti placeholder dengan nama file lokal: galeri-3.jpg -->
+                <img src="galeri-3.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 3">
+                <!-- Ganti placeholder dengan nama file lokal: galeri-4.jpg -->
+                <img src="galeri-4.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 4">
+                <!-- Ganti placeholder dengan nama file lokal: galeri-5.jpg -->
+                <img src="galeri-5.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 5">
+                <!-- Ganti placeholder dengan nama file lokal: galeri-6.jpg -->
+                <img src="galeri-6.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 6">
             </div>
         </section>
 
         <!-- Bagian 6: Amplop Digital / Hadiah -->
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="hadiah" class="section-bg text-center">
-            <h2 class="text-3xl title-font font-bold mb-4" style="color: var(--primary-color);">Amplop Digital</h2>
-            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Doa restu Anda merupakan hadiah yang tak ternilai harganya. Namun, jika Anda ingin memberikan hadiah, silakan melalui transfer bank berikut:</p>
+            <h2 class="text-3xl title-font font-bold mb-4" style="color: var(--primary-color);">Amplop & Hadiah</h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Doa restu Anda merupakan hadiah yang tak ternilai. Jika Anda ingin memberikan kado, kami menyediakan opsi berikut:</p>
 
-            <div class="max-w-md mx-auto p-6 rounded-xl shadow-xl bg-secondary-color border border-purple-300">
-                <div class="mb-4 p-4 border-b border-purple-400">
-                    <p class="text-xl font-semibold title-font">Bank BCA (A.n. Marfuah)</p>
-                    <p id="rekeningRisa" class="text-2xl font-bold mt-1 text-gray-800">1234 567 890</p>
-                    <button onclick="copyToClipboard('rekeningRisa', this)" class="text-sm text-purple-600 hover:underline mt-1 focus:outline-none">
-                        <i class="fas fa-copy"></i> Salin
-                    </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Kolom 1: Amplop Digital -->
+                <div class="p-6 rounded-xl shadow-xl border-2" style="background-color: var(--secondary-color); border-color: var(--primary-color);">
+                    <h3 class="text-2xl title-font font-bold mb-4" style="color: var(--primary-color);"><i class="fas fa-wallet mr-2"></i> Amplop Digital</h3>
+
+                    <!-- DETAIL BANK JAGO (ARIF) -->
+                    <div class="mb-4 p-3 rounded-lg border-b" style="border-color: #D4AF37; background-color: #ffffff;">
+                        <p class="text-sm font-semibold text-gray-700">Bank Jago (A.n. Arif Hidayat)</p>
+                        <p id="rekeningArifJago" class="text-xl font-bold mt-1 text-gray-800">101967631537</p>
+                        <button onclick="copyToClipboard('rekeningArifJago', this)" class="text-sm hover:underline mt-1 focus:outline-none" style="color: var(--primary-color);">
+                            <i class="fas fa-copy"></i> Salin Nomor
+                        </button>
+                    </div>
+                    
+                    <!-- DETAIL SEA BANK (VUAH) -->
+                    <div class="p-3 rounded-lg bg-white">
+                        <p class="text-sm font-semibold text-gray-700">Sea Bank (A.n. Marfuah)</p>
+                        <p id="rekeningVuahSeaBank" class="text-xl font-bold mt-1 text-gray-800">901498159610</p>
+                        <button onclick="copyToClipboard('rekeningVuahSeaBank', this)" class="text-sm hover:underline mt-1 focus:outline-none" style="color: var(--primary-color);">
+                            <i class="fas fa-copy"></i> Salin Nomor
+                        </button>
+                    </div>
                 </div>
-                <div class="p-4">
-                    <p class="text-xl font-semibold title-font">Bank Mandiri (A.n. Arif Hidayat)</p>
-                    <p id="rekeningAndika" class="text-2xl font-bold mt-1 text-gray-800">0987 654 321</p>
-                    <button onclick="copyToClipboard('rekeningAndika', this)" class="text-sm text-purple-600 hover:underline mt-1 focus:outline-none">
-                        <i class="fas fa-copy"></i> Salin
-                    </button>
+
+                <!-- Kolom 2: Hadiah Fisik -->
+                <div class="p-6 rounded-xl shadow-xl border-2" style="background-color: var(--secondary-color); border-color: var(--primary-color);">
+                    <h3 class="text-2xl title-font font-bold mb-4" style="color: var(--primary-color);"><i class="fas fa-box-open mr-2"></i> Hadiah Fisik</h3>
+                    
+                    <div class="p-3 rounded-lg bg-white">
+                        <p class="text-sm font-semibold text-gray-700">Alamat Pengiriman Kado:</p>
+                        <!-- Alamat lengkap sudah tanpa 'kode pos perkiraan' -->
+                        <p id="alamatKado" class="mt-2 text-base text-gray-800 font-medium">
+                            Dusun Sidomulyo, Kampung Donomulyo, Kec Banjit, Kab Way Kanan, Lampung, 34766.
+                        </p>
+                        <p class="text-sm text-gray-600 mt-2">Penerima: Arif atau Marfuah</p>
+                        
+                        <button onclick="copyToClipboard('alamatKado', this)" class="text-sm hover:underline mt-4 focus:outline-none" style="color: var(--primary-color);">
+                            <i class="fas fa-copy"></i> Salin Alamat Lengkap
+                        </button>
+                    </div>
+                    <p class="text-sm mt-4 italic text-gray-500">Kami mohon untuk mencantumkan nama pengirim pada paket.</p>
                 </div>
-                <p class="text-sm mt-4 italic text-gray-500">Mohon konfirmasi setelah transfer.</p>
+
             </div>
             
             <!-- Message box for copy confirmation (instead of alert) -->
-            <div id="messageBox" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-3 rounded-lg shadow-lg hidden transition-opacity duration-300 z-50"></div>
+            <div id="messageBox" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-600 text-white p-3 rounded-lg shadow-lg hidden transition-opacity duration-300 z-50"></div>
         </section>
 
         <!-- Bagian 7: RSVP & Ucapan/Doa (Buku Tamu Digital) -->
-        <section id="guestbook" class="section-bg bg-gray-100">
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
+        <section id="guestbook" class="section-bg">
             <h2 class="text-3xl title-font font-bold text-center mb-10" style="color: var(--primary-color);">Konfirmasi Kehadiran & Ucapan</h2>
             
             <!-- RSVP Form -->
@@ -293,12 +341,12 @@
                 <form id="rsvpForm">
                     <div class="mb-4">
                         <label for="guestName" class="block text-sm font-medium text-gray-700 mb-2">Nama Anda:</label>
-                        <input type="text" id="guestNameInput" name="guestName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50">
+                        <input type="text" id="guestNameInput" name="guestName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-color focus:border-primary-color bg-gray-50">
                     </div>
                     
                     <div class="mb-4">
                         <label for="attendance" class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Kehadiran:</label>
-                        <select id="attendance" name="attendance" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50">
+                        <select id="attendance" name="attendance" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-color focus:border-primary-color bg-gray-50">
                             <option value="">-- Pilih Status --</option>
                             <option value="Hadir">Insya Allah Hadir</option>
                             <option value="Tidak Hadir">Mohon Maaf Tidak Hadir</option>
@@ -307,10 +355,10 @@
 
                     <div class="mb-6">
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Ucapan & Doa:</label>
-                        <textarea id="message" name="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50" placeholder="Tuliskan harapan terbaik Anda..."></textarea>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-color focus:border-primary-color bg-gray-50" placeholder="Tuliskan harapan terbaik Anda..."></textarea>
                     </div>
                     
-                    <button type="submit" id="submitButton" class="w-full py-3 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-300 shadow-md">
+                    <button type="submit" id="submitButton" class="w-full text-white font-semibold rounded-lg hover:bg-opacity-90 transition duration-300 shadow-md" style="background-color: var(--primary-color);">
                         Kirim Konfirmasi & Ucapan
                     </button>
                 </form>
@@ -328,7 +376,8 @@
         </section>
 
         <!-- Bagian 8: Penutup -->
-        <section id="penutup" class="section-bg text-center bg-secondary-color">
+        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
+        <section id="penutup" class="section-bg text-center">
             <div class="max-w-2xl mx-auto">
                 <p class="text-lg italic text-gray-700 mb-6">
                     Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.
@@ -344,7 +393,7 @@
     
     <!-- Music Control Button -->
     <button id="musicButton" class="bg-white p-3 rounded-full shadow-xl hidden">
-        <i id="musicIcon" class="fas fa-music text-purple-600 text-xl rotating"></i>
+        <i id="musicIcon" class="fas fa-music text-xl rotating" style="color: var(--primary-color);"></i>
     </button>
     
 
@@ -491,9 +540,12 @@
         const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown(); // Call immediately to avoid delay
 
-        // 4. Clipboard Function (Copy Rekening)
+        // 4. Clipboard Function (Copy Rekening / Alamat)
         window.copyToClipboard = function(elementId, button) {
-            const textToCopy = document.getElementById(elementId).textContent.trim();
+            const element = document.getElementById(elementId);
+            // Untuk alamat, kita ambil teksnya secara lengkap
+            const textToCopy = element.textContent.trim(); 
+            
             const tempInput = document.createElement("textarea");
             tempInput.value = textToCopy;
             document.body.appendChild(tempInput);
@@ -501,7 +553,11 @@
             document.execCommand('copy');
             document.body.removeChild(tempInput);
             
-            showMessageBox("Nomor rekening berhasil disalin!", 2000);
+            // Tentukan pesan yang ditampilkan
+            const isAddress = elementId === 'alamatKado';
+            const messageText = isAddress ? "Alamat berhasil disalin!" : "Nomor rekening berhasil disalin!";
+
+            showMessageBox(messageText, 2000);
             
             // Ubah teks tombol sebentar
             const originalText = button.innerHTML;
@@ -621,7 +677,7 @@
                     : '<i class="fas fa-times-circle text-red-500 mr-2"></i> Tidak Hadir';
 
                 const wishElement = `
-                    <div class="p-4 bg-white rounded-xl shadow-lg border-l-4 border-purple-500">
+                    <div class="p-4 bg-white rounded-xl shadow-lg border-l-4" style="border-color: var(--primary-color);">
                         <div class="flex justify-between items-start mb-2">
                             <p class="font-bold text-lg text-gray-800">${wish.name}</p>
                             <span class="text-xs text-gray-400">${formattedDate}</span>
