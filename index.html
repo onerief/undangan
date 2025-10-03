@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Risa & Andika</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Styles & Fonts */
+        :root {
+            --primary-color: #6a4c93; /* Ungu Anggur */
+            --secondary-color: #e8d9c5; /* Krem Muda */
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: #f7f7f7;
+            scroll-behavior: smooth;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://placehold.co/1080x1920/333333/ffffff?text=Prewedding+Photo+Placeholder');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-bg {
+            background-color: white;
+            padding: 3rem 1.5rem;
+        }
+
+        /* Styling the scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        /* Custom animation for opening */
+        .fade-in {
+            animation: fadeIn 2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Music Button Style */
+        #musicButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .rotating {
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal specific styles */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+        ========================================
+        1. MODAL (Pintu Masuk & Salam Personalisasi)
+        ========================================
+    -->
+    <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center modal-backdrop transition-opacity duration-500">
+        <div class="bg-white p-8 md:p-10 max-w-sm md:max-w-md w-11/12 rounded-xl shadow-2xl text-center fade-in">
+            <h1 class="text-xl md:text-2xl title-font text-gray-800 mb-2">Undangan Pernikahan</h1>
+            <h2 class="text-4xl md:text-6xl title-font font-bold text-gray-900" style="color: var(--primary-color);">Risa & Andika</h2>
+            <p class="mt-6 text-gray-600">Kepada Yth:</p>
+            <p id="guestNameDisplay" class="text-xl font-semibold mt-2 mb-6 text-gray-800">[Nama Tamu]</p>
+            
+            <p class="text-sm text-gray-500 mb-6">Mohon maaf jika terdapat kesalahan penulisan nama dan gelar.</p>
+
+            <button id="openInvitationButton" 
+                    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+                <i class="fas fa-envelope-open-text mr-2"></i> Buka Undangan
+            </button>
+        </div>
+        <audio id="backgroundMusic" loop>
+            <!-- Ganti URL ini dengan link musik latar pilihan Anda -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
+
+    <!-- 
+        ========================================
+        2. KONTEN UTAMA UNDANGAN (Tersembunyi Awalnya)
+        ========================================
+    -->
+    <main id="mainContent" class="hidden">
+        
+        <!-- Bagian 1: Hero / Sampul Depan -->
+        <section id="sampul" class="hero-section text-white">
+            <div class="max-w-xl mx-auto p-4">
+                <p class="text-lg mb-4 title-font">The Wedding of</p>
+                <h1 class="text-6xl md:text-8xl title-font font-bold mb-8">Risa & Andika</h1>
+                <p class="text-xl font-medium title-font">20 · 07 · 2026</p>
+                <a href="#lokasi" class="mt-8 inline-block px-6 py-3 border border-white rounded-full text-sm hover:bg-white hover:text-gray-800 transition duration-300">Lihat Detail Acara</a>
+            </div>
+        </section>
+
+        <!-- Bagian 2: Ayat Pembuka -->
+        <section id="pembuka" class="section-bg text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-2xl title-font font-semibold mb-4 text-gray-700">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+                <p class="text-lg italic text-gray-600 leading-relaxed">
+                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                </p>
+                <p class="mt-4 text-sm font-semibold text-gray-500">(QS. Ar-Rum: 21)</p>
+            </div>
+        </section>
+
+        <!-- Bagian 3: Detail Mempelai -->
+        <section id="mempelai" class="section-bg bg-secondary-color">
+            <h2 class="text-3xl title-font font-bold text-center mb-10" style="color: var(--primary-color);">Pasangan Bahagia</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
+                <!-- Mempelai Pria -->
+                <div class="p-6 rounded-xl shadow-lg bg-white">
+                    <img src="https://placehold.co/150x150/6a4c93/ffffff?text=Andika" alt="Foto Andika" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4 border-purple-200">
+                    <p class="text-4xl title-font font-bold" style="color: var(--primary-color);">Andika</p>
+                    <p class="text-gray-600 mt-2">Putra dari Bapak Budi Santoso & Ibu Ratna Dewi</p>
+                    <div class="mt-4">
+                        <a href="https://instagram.com/andika" target="_blank" class="text-gray-500 hover:text-pink-600 mx-2 text-xl"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- Mempelai Wanita -->
+                <div class="p-6 rounded-xl shadow-lg bg-white">
+                    <img src="https://placehold.co/150x150/6a4c93/ffffff?text=Risa" alt="Foto Risa" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4 border-purple-200">
+                    <p class="text-4xl title-font font-bold" style="color: var(--primary-color);">Risa</p>
+                    <p class="text-gray-600 mt-2">Putri dari Bapak Joko Pramono & Ibu Siti Aminah</p>
+                    <div class="mt-4">
+                        <a href="https://instagram.com/risa" target="_blank" class="text-gray-500 hover:text-pink-600 mx-2 text-xl"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 4: Detail Acara & Countdown -->
+        <section id="lokasi" class="section-bg text-center">
+            <h2 class="text-3xl title-font font-bold mb-4" style="color: var(--primary-color);">Waktu & Tempat</h2>
+            <p class="text-gray-600 mb-8">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
+
+            <!-- Countdown Timer -->
+            <div id="countdown" class="max-w-2xl mx-auto mb-10 p-6 rounded-xl shadow-inner bg-gray-50 border border-gray-200">
+                <p class="text-lg font-semibold mb-4 text-gray-700">Menghitung Mundur Menuju Hari Bahagia:</p>
+                <div class="flex justify-center space-x-3 md:space-x-6 text-center text-gray-800">
+                    <div class="w-16 md:w-20 p-2 bg-white rounded-lg shadow-md">
+                        <p id="days" class="text-3xl md:text-4xl font-extrabold"></p>
+                        <span class="text-xs md:text-sm mt-1 block">Hari</span>
+                    </div>
+                    <div class="w-16 md:w-20 p-2 bg-white rounded-lg shadow-md">
+                        <p id="hours" class="text-3xl md:text-4xl font-extrabold"></p>
+                        <span class="text-xs md:text-sm mt-1 block">Jam</span>
+                    </div>
+                    <div class="w-16 md:w-20 p-2 bg-white rounded-lg shadow-md">
+                        <p id="minutes" class="text-3xl md:text-4xl font-extrabold"></p>
+                        <span class="text-xs md:text-sm mt-1 block">Menit</span>
+                    </div>
+                    <div class-="w-16 md:w-20 p-2 bg-white rounded-lg shadow-md">
+                        <p id="seconds" class="text-3xl md:text-4xl font-extrabold"></p>
+                        <span class="text-xs md:text-sm mt-1 block">Detik</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Detail Acara 1: Akad -->
+                <div class="p-6 rounded-xl shadow-lg bg-secondary-color text-gray-800">
+                    <i class="fas fa-ring text-4xl mb-4" style="color: var(--primary-color);"></i>
+                    <h3 class="text-2xl title-font font-semibold mb-2">Akad Nikah</h3>
+                    <p class="font-medium">Senin, 20 Juli 2026</p>
+                    <p class="text-lg font-bold mb-4" style="color: var(--primary-color);">Pukul 10.00 WIB</p>
+                    <p class="text-sm">Balai Kartini, Ruang Mawar</p>
+                    <p class="text-sm">Jl. Jend. Gatot Subroto No.Kav. 37, Jakarta</p>
+                </div>
+                <!-- Detail Acara 2: Resepsi -->
+                <div class="p-6 rounded-xl shadow-lg bg-secondary-color text-gray-800">
+                    <i class="fas fa-glass-cheers text-4xl mb-4" style="color: var(--primary-color);"></i>
+                    <h3 class="text-2xl title-font font-semibold mb-2">Resepsi</h3>
+                    <p class="font-medium">Senin, 20 Juli 2026</p>
+                    <p class="text-lg font-bold mb-4" style="color: var(--primary-color);">Pukul 12.00 - 15.00 WIB</p>
+                    <p class="text-sm">Balai Kartini, Ruang Anggrek</p>
+                    <p class="text-sm">Jl. Jend. Gatot Subroto No.Kav. 37, Jakarta</p>
+                </div>
+            </div>
+
+            <!-- Google Maps -->
+            <div class="mt-10 max-w-4xl mx-auto">
+                <div class="rounded-xl overflow-hidden shadow-xl border-2 border-purple-300">
+                    <!-- Ganti dengan URL embed Google Maps lokasi acara Anda -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.27375253257!2d106.82903717500589!3d-6.229158593754966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3fe27e10829%3A0xf657e2d9804e38e1!2sBalai%20Kartini!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <a href="https://maps.app.goo.gl/examplelink" target="_blank" class="mt-4 inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition duration-300 shadow-md">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Buka di Google Maps
+                </a>
+            </div>
+        </section>
+
+        <!-- Bagian 5: Galeri Foto -->
+        <section id="galeri" class="section-bg bg-gray-100">
+            <h2 class="text-3xl title-font font-bold text-center mb-10" style="color: var(--primary-color);">Galeri Momen</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Ganti placeholder dengan URL foto prewedding Anda -->
+                <img src="https://placehold.co/400x400/805ad5/ffffff?text=Photo+1" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 1">
+                <img src="https://placehold.co/400x400/6a4c93/ffffff?text=Photo+2" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 2">
+                <img src="https://placehold.co/400x400/805ad5/ffffff?text=Photo+3" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 3">
+                <img src="https://placehold.co/400x400/6a4c93/ffffff?text=Photo+4" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 4">
+                <img src="https://placehold.co/400x400/805ad5/ffffff?text=Photo+5" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 5">
+                <img src="https://placehold.co/400x400/6a4c93/ffffff?text=Photo+6" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 6">
+            </div>
+        </section>
+
+        <!-- Bagian 6: Amplop Digital / Hadiah -->
+        <section id="hadiah" class="section-bg text-center">
+            <h2 class="text-3xl title-font font-bold mb-4" style="color: var(--primary-color);">Amplop Digital</h2>
+            <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Doa restu Anda merupakan hadiah yang tak ternilai harganya. Namun, jika Anda ingin memberikan hadiah, silakan melalui transfer bank berikut:</p>
+
+            <div class="max-w-md mx-auto p-6 rounded-xl shadow-xl bg-secondary-color border border-purple-300">
+                <div class="mb-4 p-4 border-b border-purple-400">
+                    <p class="text-xl font-semibold title-font">Bank BCA (A.n. Risa)</p>
+                    <p id="rekeningRisa" class="text-2xl font-bold mt-1 text-gray-800">1234 567 890</p>
+                    <button onclick="copyToClipboard('rekeningRisa', this)" class="text-sm text-purple-600 hover:underline mt-1 focus:outline-none">
+                        <i class="fas fa-copy"></i> Salin
+                    </button>
+                </div>
+                <div class="p-4">
+                    <p class="text-xl font-semibold title-font">Bank Mandiri (A.n. Andika)</p>
+                    <p id="rekeningAndika" class="text-2xl font-bold mt-1 text-gray-800">0987 654 321</p>
+                    <button onclick="copyToClipboard('rekeningAndika', this)" class="text-sm text-purple-600 hover:underline mt-1 focus:outline-none">
+                        <i class="fas fa-copy"></i> Salin
+                    </button>
+                </div>
+                <p class="text-sm mt-4 italic text-gray-500">Mohon konfirmasi setelah transfer.</p>
+            </div>
+            
+            <!-- Message box for copy confirmation (instead of alert) -->
+            <div id="messageBox" class="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-3 rounded-lg shadow-lg hidden transition-opacity duration-300 z-50"></div>
+        </section>
+
+        <!-- Bagian 7: RSVP & Ucapan/Doa (Buku Tamu Digital) -->
+        <section id="guestbook" class="section-bg bg-gray-100">
+            <h2 class="text-3xl title-font font-bold text-center mb-10" style="color: var(--primary-color);">Konfirmasi Kehadiran & Ucapan</h2>
+            
+            <!-- RSVP Form -->
+            <div class="max-w-xl mx-auto p-6 rounded-xl shadow-xl bg-white mb-10">
+                <form id="rsvpForm">
+                    <div class="mb-4">
+                        <label for="guestName" class="block text-sm font-medium text-gray-700 mb-2">Nama Anda:</label>
+                        <input type="text" id="guestNameInput" name="guestName" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="attendance" class="block text-sm font-medium text-gray-700 mb-2">Konfirmasi Kehadiran:</label>
+                        <select id="attendance" name="attendance" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50">
+                            <option value="">-- Pilih Status --</option>
+                            <option value="Hadir">Insya Allah Hadir</option>
+                            <option value="Tidak Hadir">Mohon Maaf Tidak Hadir</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Ucapan & Doa:</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-purple-500 focus:border-purple-500 bg-gray-50" placeholder="Tuliskan harapan terbaik Anda..."></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submitButton" class="w-full py-3 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-300 shadow-md">
+                        Kirim Konfirmasi & Ucapan
+                    </button>
+                </form>
+                <p id="formStatus" class="mt-4 text-center text-sm font-medium"></p>
+            </div>
+
+            <!-- Wishes List -->
+            <div class="max-w-2xl mx-auto mt-10">
+                <h3 class="text-2xl title-font font-semibold mb-6 text-center text-gray-700">Ucapan Terbaik dari Tamu</h3>
+                <div id="wishesList" class="space-y-4">
+                    <!-- Wishes will be loaded here by JavaScript -->
+                    <p class="text-center text-gray-500" id="loadingWishes">Memuat ucapan...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 8: Penutup -->
+        <section id="penutup" class="section-bg text-center bg-secondary-color">
+            <div class="max-w-2xl mx-auto">
+                <p class="text-lg italic text-gray-700 mb-6">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.
+                </p>
+                <h3 class="text-4xl title-font font-bold" style="color: var(--primary-color);">Kami yang Berbahagia</h3>
+                <p class="text-2xl title-font font-semibold mt-4 text-gray-800">Risa & Andika</p>
+                <p class="text-sm mt-6 text-gray-500">© 2026 Risa & Andika Wedding Invitation</p>
+                <p class="text-xs mt-2 text-gray-400">Powered by Gemini & Firebase</p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Music Control Button -->
+    <button id="musicButton" class="bg-white p-3 rounded-full shadow-xl hidden">
+        <i id="musicIcon" class="fas fa-music text-purple-600 text-xl rotating"></i>
+    </button>
+    
+
+    <!-- 
+        ========================================
+        3. JAVASCRIPT & FIREBASE LOGIC
+        ========================================
+    -->
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // Atur log level untuk debugging
+        setLogLevel('Debug');
+
+        // --- GLOBAL VARIABLES (Provided by Canvas Environment) ---
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-undangan-app';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            // Konfigurasi default (ganti dengan konfigurasi Firebase Anda jika perlu)
+            apiKey: "AIzaSy...",
+            authDomain: "projectId.firebaseapp.com",
+            projectId: "projectId",
+            storageBucket: "projectId.appspot.com",
+            messagingSenderId: "...",
+            appId: "..."
+        };
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // --- FIREBASE INITIALIZATION ---
+        let app, db, auth, userId;
+        
+        async function initializeFirebase() {
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                console.log("Firebase initialized. User ID:", userId);
+
+                // Setelah Firebase siap, mulai mendengarkan Ucapan/Wishes
+                setupWishesListener();
+
+            } catch (error) {
+                console.error("Error initializing Firebase or signing in:", error);
+                document.getElementById('formStatus').textContent = "Terjadi kesalahan saat menghubungkan ke database.";
+            }
+        }
+
+        // --- CORE APPLICATION LOGIC ---
+        
+        // 1. URL Parameter Parsing (Nama Tamu)
+        function getGuestName() {
+            const urlParams = new URLSearchParams(window.location.search);
+            // Mengambil parameter 'to', jika tidak ada, gunakan 'Tamu'
+            let name = urlParams.get('to') || 'Tamu Undangan';
+            // Membersihkan nama dari karakter non-alfanumerik atau kode berbahaya (basic sanitization)
+            name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;"); 
+            return name;
+        }
+
+        const guestName = getGuestName();
+        document.getElementById('guestNameDisplay').textContent = guestName;
+        document.getElementById('guestNameInput').value = guestName; // Isi otomatis form
+
+        // 2. Music and Modal Handling
+        const welcomeModal = document.getElementById('welcomeModal');
+        const mainContent = document.getElementById('mainContent');
+        const openButton = document.getElementById('openInvitationButton');
+        const musicButton = document.getElementById('musicButton');
+        const musicIcon = document.getElementById('musicIcon');
+        const audio = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.classList.remove('rotating');
+                isPlaying = false;
+            } else {
+                audio.play().catch(error => {
+                    console.error("Autoplay prevented:", error);
+                    // Jika autoplay gagal (umum di browser modern), biarkan icon tetap berputar
+                });
+                musicIcon.classList.add('rotating');
+                isPlaying = true;
+            }
+        }
+
+        openButton.addEventListener('click', () => {
+            // Sembunyikan Modal dengan transisi
+            welcomeModal.style.opacity = '0';
+            welcomeModal.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                welcomeModal.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                musicButton.classList.remove('hidden');
+                
+                // Mulai mainkan musik saat undangan dibuka
+                toggleMusic(); 
+                
+                // Scroll ke bagian sampul
+                document.getElementById('sampul').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        });
+
+        musicButton.addEventListener('click', toggleMusic);
+
+        // 3. Countdown Timer Logic
+        const targetDate = new Date('2026-07-20T10:00:00').getTime(); // Target: 20 Juli 2026, 10:00 WIB
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-purple-600'>ACARA SEDANG BERLANGSUNG!</p>";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            document.getElementById("days").textContent = String(days).padStart(2, '0');
+            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Call immediately to avoid delay
+
+        // 4. Clipboard Function (Copy Rekening)
+        window.copyToClipboard = function(elementId, button) {
+            const textToCopy = document.getElementById(elementId).textContent.trim();
+            const tempInput = document.createElement("textarea");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            showMessageBox("Nomor rekening berhasil disalin!", 2000);
+            
+            // Ubah teks tombol sebentar
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+            }, 1000);
+        }
+
+        function showMessageBox(message, duration = 3000) {
+            const box = document.getElementById('messageBox');
+            box.textContent = message;
+            box.classList.remove('hidden', 'opacity-0');
+            box.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                box.classList.remove('opacity-100');
+                box.classList.add('opacity-0');
+                setTimeout(() => box.classList.add('hidden'), 300); // Tunggu transisi
+            }, duration);
+        }
+
+        // 5. FIREBASE: Submit RSVP and Wish
+        const rsvpForm = document.getElementById('rsvpForm');
+        const submitButton = document.getElementById('submitButton');
+        const formStatus = document.getElementById('formStatus');
+
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!db) {
+                formStatus.textContent = "Database belum siap. Coba lagi.";
+                formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600';
+                return;
+            }
+
+            const name = document.getElementById('guestNameInput').value.trim();
+            const attendance = document.getElementById('attendance').value;
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !attendance || !message) {
+                formStatus.textContent = "Mohon isi semua kolom.";
+                formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600';
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Mengirim...';
+            formStatus.textContent = '';
+
+            try {
+                // Gunakan nama tamu sebagai ID dokumen unik untuk mencegah duplikasi pengiriman dari satu orang
+                // Path: /artifacts/{appId}/public/data/wedding_wishes/{GuestName_sanitized}
+                const docRefId = name.replace(/\s+/g, '_').toLowerCase();
+                const docPath = doc(db, `artifacts/${appId}/public/data/wedding_wishes`, docRefId);
+
+                await setDoc(docPath, {
+                    name: name,
+                    attendance: attendance,
+                    message: message,
+                    timestamp: new Date().toISOString(),
+                    // Tambahkan userId untuk identifikasi siapa yang mengirim (meskipun namanya unik)
+                    senderId: userId 
+                });
+
+                formStatus.textContent = "Konfirmasi dan Ucapan berhasil dikirim! Terima kasih.";
+                formStatus.className = 'mt-4 text-center text-sm font-medium text-green-600';
+                rsvpForm.reset();
+                document.getElementById('guestNameInput').value = name; // Isi kembali nama tamu
+            } catch (error) {
+                console.error("Error submitting document: ", error);
+                formStatus.textContent = `Gagal mengirim. Error: ${error.message}`;
+                formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600';
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Kirim Konfirmasi & Ucapan';
+            }
+        });
+
+        // 6. FIREBASE: Listen for Wishes (Guest Book)
+        const wishesList = document.getElementById('wishesList');
+
+        function setupWishesListener() {
+            // Path: /artifacts/{appId}/public/data/wedding_wishes
+            const q = query(collection(db, `artifacts/${appId}/public/data/wedding_wishes`));
+
+            onSnapshot(q, (snapshot) => {
+                const wishes = [];
+                snapshot.forEach((doc) => {
+                    wishes.push(doc.data());
+                });
+
+                // Sort by timestamp (newest first)
+                wishes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                renderWishes(wishes);
+            }, (error) => {
+                console.error("Error fetching wishes:", error);
+                document.getElementById('loadingWishes').textContent = "Gagal memuat ucapan.";
+            });
+        }
+
+        function renderWishes(wishes) {
+            wishesList.innerHTML = ''; // Clear existing list
+            document.getElementById('loadingWishes')?.remove();
+
+            if (wishes.length === 0) {
+                wishesList.innerHTML = '<p class="text-center text-gray-500">Belum ada ucapan. Jadilah yang pertama!</p>';
+                return;
+            }
+
+            wishes.forEach(wish => {
+                const date = new Date(wish.timestamp);
+                const formattedDate = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                
+                const attendanceIcon = wish.attendance === 'Hadir' 
+                    ? '<i class="fas fa-check-circle text-green-500 mr-2"></i> Hadir' 
+                    : '<i class="fas fa-times-circle text-red-500 mr-2"></i> Tidak Hadir';
+
+                const wishElement = `
+                    <div class="p-4 bg-white rounded-xl shadow-lg border-l-4 border-purple-500">
+                        <div class="flex justify-between items-start mb-2">
+                            <p class="font-bold text-lg text-gray-800">${wish.name}</p>
+                            <span class="text-xs text-gray-400">${formattedDate}</span>
+                        </div>
+                        <p class="text-gray-700 italic mb-3">"${wish.message}"</p>
+                        <span class="text-sm font-medium text-gray-600">${attendanceIcon}</span>
+                    </div>
+                `;
+                wishesList.innerHTML += wishElement;
+            });
+        }
+        
+        // --- START APP ---
+        window.addEventListener('load', () => {
+            initializeFirebase();
+        });
+
+    </script>
+</body>
+</html>
