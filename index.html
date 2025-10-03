@@ -10,23 +10,25 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Custom Styles & Fonts - TEMA ADAT JAWA (Coklat Tua & Linen) */
+        /* Custom CSS Variables - TEMA ADAT JAWA (Fixed) */
         :root {
             --primary-color: #4E342E; /* Coklat Tua (Traditional Brown) */
             --secondary-color: #FAF0E6; /* Linen (Light Cream/Beige) */
             --accent-color: #CC9900; /* Gold/Kuning Emas */
             --text-color: #333333;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --bg-motif: url('batik_motif.png');
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-body);
             color: var(--text-color);
             background-color: #f7f7f7;
             scroll-behavior: smooth;
         }
 
         .hero-section {
-            /* URL Sampul Utama diganti dengan file lokal: hero.jpg */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('hero.jpg');
             background-size: cover;
             background-position: center;
@@ -38,23 +40,22 @@
         }
 
         .title-font {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-title);
         }
 
         .section-bg {
-            /* Latar belakang diubah menjadi motif Batik (Ganti URL ini dengan file motif batik Anda) */
-            background-image: url('batik_motif.png'); 
-            background-repeat: repeat; /* Agar motif berulang di seluruh latar */
+            background-image: var(--bg-motif); 
+            background-repeat: repeat; 
             background-attachment: scroll;
-            background-color: var(--secondary-color); /* Warna fallback/dasar jika gambar gagal dimuat */
+            background-color: var(--secondary-color); 
             padding: 3rem 1.5rem;
         }
         
-        /* NEW: Stylized Heading Divider (Gaya Ornamen Kraton/Wayang) */
+        /* Stylized Heading Divider (Gaya Ornamen Kraton/Wayang) */
         .section-title {
             position: relative;
             display: inline-block;
-            padding-bottom: 10px; /* Jarak antara teks judul dan garis */
+            padding-bottom: 10px; 
         }
 
         .section-title::after {
@@ -63,57 +64,23 @@
             left: 50%;
             bottom: 0;
             transform: translateX(-50%);
-            width: 80px; /* Lebar ornamen */
+            width: 80px; 
             height: 3px;
-            background-color: var(--accent-color); /* Emas/Perunggu */
+            background-color: var(--accent-color); 
             border-radius: 2px;
-            box-shadow: 0 0 5px rgba(204, 153, 0, 0.7); /* Efek cahaya lembut */
+            box-shadow: 0 0 5px rgba(204, 153, 0, 0.7); 
+            opacity: 1; /* Selalu tampil karena tema sudah fixed */
         }
 
-        /* Styling the scrollbar for aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
-        }
-
-        /* Custom animation for opening */
-        .fade-in {
-            animation: fadeIn 2s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Custom Music Button Style */
-        #musicButton {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
-
-        .rotating {
-            animation: rotate 2s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Modal specific styles */
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
+        /* [REST OF CSS STYLES ARE THE SAME] */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+        .fade-in { animation: fadeIn 2s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        #musicButton { position: fixed; bottom: 20px; right: 20px; z-index: 1000; cursor: pointer; width: 50px; height: 50px; transition: transform 0.3s ease; }
+        .rotating { animation: rotate 2s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .modal-backdrop { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); }
     </style>
 </head>
 <body>
@@ -126,7 +93,6 @@
     <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center modal-backdrop transition-opacity duration-500">
         <div class="bg-white p-8 md:p-10 max-w-sm md:max-w-md w-11/12 rounded-xl shadow-2xl text-center fade-in">
             <h1 class="text-xl md:text-2xl title-font text-gray-800 mb-2">Undangan Pernikahan</h1>
-            <!-- NAMA PANGGILAN DI MODAL -->
             <h2 class="text-4xl md:text-6xl title-font font-bold text-gray-900" style="color: var(--primary-color);">Vuah & Arif</h2>
             <p class="mt-6 text-gray-600">Kepada Yth:</p>
             <p id="guestNameDisplay" class="text-xl font-semibold mt-2 mb-6 text-gray-800">[Nama Tamu]</p>
@@ -140,7 +106,6 @@
             </button>
         </div>
         <audio id="backgroundMusic" loop>
-            <!-- Ganti 'music.mp3' dengan nama file MP3 lagu romantis Anda yang ditempatkan di folder yang sama -->
             <source src="music.mp3" type="audio/mpeg"> 
             Browser Anda tidak mendukung elemen audio.
         </audio>
@@ -153,22 +118,22 @@
     -->
     <main id="mainContent" class="hidden">
         
+        <!-- Pilihan Tema Dihapus dari sini -->
+
         <!-- Bagian 1: Hero / Sampul Depan -->
         <section id="sampul" class="hero-section text-white">
             <div class="max-w-xl mx-auto p-4">
                 <p class="text-lg mb-4 title-font">The Wedding of</p>
-                <!-- NAMA PANGGILAN DI SAMPUL -->
                 <h1 class="text-6xl md:text-8xl title-font font-bold mb-8">Vuah & Arif</h1>
                 <p class="text-xl font-medium title-font">22 · 10 · 2025</p>
-                <a href="#lokasi" class="mt-8 inline-block px-6 py-3 border border-white rounded-full text-sm hover:bg-white hover:text-gray-800 transition duration-300">Lihat Detail Acara</a>
+                <a href="#lokasi" class="mt-8 inline-block px-6 py-3 border border-white rounded-full text-sm hover:bg-white transition duration-300" style="color: var(--primary-color); border-color: white;">Lihat Detail Acara</a>
             </div>
         </section>
 
         <!-- Bagian 2: Ayat Pembuka -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="pembuka" class="section-bg text-center">
             <div class="max-w-2xl mx-auto">
-                <h2 class="text-2xl title-font font-semibold mb-8 text-gray-700 section-title mx-auto">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+                <h2 class="text-2xl title-font font-semibold mb-8 text-gray-700 section-title mx-auto" style="color: var(--primary-color);">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
                 <p class="text-lg italic text-gray-600 leading-relaxed">
                     "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
                 </p>
@@ -177,17 +142,14 @@
         </section>
 
         <!-- Bagian 3: Detail Mempelai -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="mempelai" class="section-bg">
             <h2 class="text-3xl title-font font-bold text-center mb-10 section-title mx-auto" style="color: var(--primary-color);">Pasangan Bahagia</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
                 <!-- Mempelai Pria -->
                 <div class="p-6 rounded-xl shadow-lg bg-white">
-                    <!-- URL Foto Profil Arif diganti menjadi file lokal: profil-arif.jpg -->
                     <img src="profil-arif.jpg" alt="Foto Arif" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4" style="border-color: var(--secondary-color);">
                     <p class="text-4xl title-font font-bold" style="color: var(--primary-color);">Arif</p>
                     <p class="text-base font-semibold text-gray-800">(Arif Hidayat)</p>
-                    <!-- DETAIL ORANG TUA ARIF -->
                     <p class="text-gray-600 mt-2">Putra bungsu dari Bapak Buyung (Alm) dan Ibu Rosilawati</p>
                     <div class="mt-4">
                         <a href="https://instagram.com/_ariefhd" target="_blank" class="text-gray-500 hover:text-pink-600 mx-2 text-xl">
@@ -197,11 +159,9 @@
                 </div>
                 <!-- Mempelai Wanita -->
                 <div class="p-6 rounded-xl shadow-lg bg-white">
-                    <!-- URL Foto Profil Vuah diganti menjadi file lokal: profil-vuah.jpg -->
                     <img src="profil-vuah.jpg" alt="Foto Marfuah" class="w-36 h-36 rounded-full mx-auto object-cover mb-4 border-4" style="border-color: var(--secondary-color);">
                     <p class="text-4xl title-font font-bold" style="color: var(--primary-color);">Vuah</p>
                     <p class="text-base font-semibold text-gray-800">(Marfuah)</p>
-                    <!-- DETAIL ORANG TUA MARFUAH -->
                     <p class="text-gray-600 mt-2">Putri bungsu dari Bapak Sairin dan Ibu Kosiyah</p>
                     <div class="mt-4">
                         <a href="https://instagram.com/vuahhmr" target="_blank" class="text-gray-500 hover:text-pink-600 mx-2 text-xl">
@@ -213,7 +173,6 @@
         </section>
 
         <!-- Bagian 4: Detail Acara & Countdown -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="lokasi" class="section-bg text-center">
             <h2 class="text-3xl title-font font-bold mb-8 section-title mx-auto" style="color: var(--primary-color);">Waktu & Tempat</h2>
             <p class="text-gray-600 mb-8">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
@@ -265,7 +224,6 @@
             <!-- Google Maps -->
             <div class="mt-10 max-w-4xl mx-auto">
                 <div class="rounded-xl overflow-hidden shadow-xl border-2" style="border-color: var(--primary-color);">
-                    <!-- Link Google Maps yang diperbarui -->
                     <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d15902.943187123992!2d104.35787865!3d-4.6300188500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2sDusun%20Sidomulyo%20Kampung%20Donomulyo%20Kec%20Banjit%20Kab%20Way%20Kanan!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
                 <a href="https://maps.app.goo.gl/S77HCmzkxmzXak7p9" target="_blank" class="mt-4 inline-flex items-center px-4 py-2 text-white rounded-full hover:bg-opacity-90 transition duration-300 shadow-md" style="background-color: var(--primary-color);">
@@ -275,27 +233,46 @@
         </section>
 
         <!-- Bagian 5: Galeri Foto -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="galeri" class="section-bg">
             <h2 class="text-3xl title-font font-bold text-center mb-10 section-title mx-auto" style="color: var(--primary-color);">Galeri Momen</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
-                <!-- Ganti placeholder dengan nama file lokal: galeri-1.jpg -->
-                <img src="galeri-1.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 1">
-                <!-- Ganti placeholder dengan nama file lokal: galeri-2.jpg -->
-                <img src="galeri-2.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 2">
-                <!-- Ganti placeholder dengan nama file lokal: galeri-3.jpg -->
-                <img src="galeri-3.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 3">
-                <!-- Ganti placeholder dengan nama file lokal: galeri-4.jpg -->
-                <img src="galeri-4.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 4">
-                <!-- Ganti placeholder dengan nama file lokal: galeri-5.jpg -->
-                <img src="galeri-5.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 5">
-                <!-- Ganti placeholder dengan nama file lokal: galeri-6.jpg -->
-                <img src="galeri-6.jpg" class="w-full h-auto object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300" alt="Galeri Foto 6">
+                
+                <!-- CATATAN: Setiap foto dibungkus div aspect-square (1:1) agar rapi -->
+                
+                <!-- Galeri Foto 1 -->
+                <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:scale-[1.03] transition duration-300 cursor-pointer">
+                    <img src="galeri-1.jpg" class="w-full h-full object-cover" alt="Galeri Foto 1">
+                </div>
+                
+                <!-- Galeri Foto 2 -->
+                <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:scale-[1.03] transition duration-300 cursor-pointer">
+                    <img src="galeri-2.jpg" class="w-full h-full object-cover" alt="Galeri Foto 2">
+                </div>
+                
+                <!-- Galeri Foto 3 -->
+                <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:scale-[1.03] transition duration-300 cursor-pointer">
+                    <img src="galeri-3.jpg" class="w-full h-full object-cover" alt="Galeri Foto 3">
+                </div>
+                
+                <!-- Galeri Foto 4 -->
+                <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:scale-[1.03] transition duration-300 cursor-pointer">
+                    <img src="galeri-4.jpg" class="w-full h-full object-cover" alt="Galeri Foto 4">
+                </div>
+                
+                <!-- Galeri Foto 5 -->
+                <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:scale-[1.03] transition duration-300 cursor-pointer">
+                    <img src="galeri-5.jpg" class="w-full h-full object-cover" alt="Galeri Foto 5">
+                </div>
+                
+                <!-- Galeri Foto 6 -->
+                <div class="aspect-square overflow-hidden rounded-lg shadow-md hover:scale-[1.03] transition duration-300 cursor-pointer">
+                    <img src="galeri-6.jpg" class="w-full h-full object-cover" alt="Galeri Foto 6">
+                </div>
+
             </div>
         </section>
 
         <!-- Bagian 6: Amplop Digital / Hadiah -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="hadiah" class="section-bg text-center">
             <h2 class="text-3xl title-font font-bold mb-8 section-title mx-auto" style="color: var(--primary-color);">Amplop & Hadiah</h2>
             <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Doa restu Anda merupakan hadiah yang tak ternilai. Jika Anda ingin memberikan kado, kami menyediakan opsi berikut:</p>
@@ -306,7 +283,7 @@
                     <h3 class="text-2xl title-font font-bold mb-4" style="color: var(--primary-color);"><i class="fas fa-wallet mr-2"></i> Amplop Digital</h3>
 
                     <!-- DETAIL BANK JAGO (ARIF) -->
-                    <div class="mb-4 p-3 rounded-lg border-b" style="border-color: #D4AF37; background-color: #ffffff;">
+                    <div class="mb-4 p-3 rounded-lg border-b" style="border-color: var(--accent-color); background-color: #ffffff;">
                         <p class="text-sm font-semibold text-gray-700">Bank Jago (A.n. Arif Hidayat)</p>
                         <p id="rekeningArifJago" class="text-xl font-bold mt-1 text-gray-800">101967631537</p>
                         
@@ -314,15 +291,7 @@
                             <i class="fas fa-copy"></i> Salin Nomor
                         </button>
                         
-                        <!-- BARCODE ARIIF (QR Code) -->
-                        <button onclick="toggleQR('qrJago', this)" class="text-sm hover:underline mt-2 focus:outline-none font-semibold text-gray-700 block mx-auto" style="color: var(--primary-color);">
-                            <i class="fas fa-qrcode mr-1"></i> Tampilkan Barcode
-                        </button>
-                        <div id="qrJago" class="hidden mt-3 text-center">
-                            <!-- Menggunakan API QR Server untuk membuat QR Code dari nomor rekening -->
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=101967631537&size=200x200" alt="QR Code Bank Jago Arif" class="w-40 h-40 mx-auto rounded-lg border-2 p-1">
-                            <p class="text-xs mt-1 text-gray-500">Scan untuk transfer Bank Jago</p>
-                        </div>
+                        <!-- BARCODE/QR Code Dihapus -->
                     </div>
                     
                     <!-- DETAIL SEA BANK (VUAH) -->
@@ -334,15 +303,7 @@
                             <i class="fas fa-copy"></i> Salin Nomor
                         </button>
                         
-                        <!-- BARCODE VUAH (QR Code) -->
-                        <button onclick="toggleQR('qrSeabank', this)" class="text-sm hover:underline mt-2 focus:outline-none font-semibold text-gray-700 block mx-auto" style="color: var(--primary-color);">
-                            <i class="fas fa-qrcode mr-1"></i> Tampilkan Barcode
-                        </button>
-                        <div id="qrSeabank" class="hidden mt-3 text-center">
-                            <!-- Menggunakan API QR Server untuk membuat QR Code dari nomor rekening -->
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=901498159610&size=200x200" alt="QR Code Sea Bank Marfuah" class="w-40 h-40 mx-auto rounded-lg border-2 p-1">
-                            <p class="text-xs mt-1 text-gray-500">Scan untuk transfer Sea Bank</p>
-                        </div>
+                        <!-- BARCODE/QR Code Dihapus -->
                     </div>
                 </div>
 
@@ -352,7 +313,6 @@
                     
                     <div class="p-3 rounded-lg bg-white">
                         <p class="text-sm font-semibold text-gray-700">Alamat Pengiriman Kado:</p>
-                        <!-- Alamat lengkap sudah tanpa 'kode pos perkiraan' -->
                         <p id="alamatKado" class="mt-2 text-base text-gray-800 font-medium">
                             Dusun Sidomulyo, Kampung Donomulyo, Kec Banjit, Kab Way Kanan, Lampung, 34766.
                         </p>
@@ -372,7 +332,6 @@
         </section>
 
         <!-- Bagian 7: RSVP & Ucapan/Doa (Buku Tamu Digital) -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="guestbook" class="section-bg">
             <h2 class="text-3xl title-font font-bold text-center mb-10 section-title mx-auto" style="color: var(--primary-color);">Konfirmasi Kehadiran & Ucapan</h2>
             
@@ -416,7 +375,6 @@
         </section>
 
         <!-- Bagian 8: Penutup -->
-        <!-- Latar belakang diubah menjadi Krem Linen (Secondary Color) dengan motif batik -->
         <section id="penutup" class="section-bg text-center">
             <div class="max-w-2xl mx-auto">
                 <p class="text-lg italic text-gray-700 mb-6">
@@ -454,17 +412,29 @@
 
         // --- GLOBAL VARIABLES (Provided by Canvas Environment) ---
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-undangan-app';
+        // KONFIGURASI FIREBASE PENGGUNA (Fixed)
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            // Konfigurasi default (ganti dengan konfigurasi Firebase Anda jika perlu)
-            apiKey: "AIzaSy...",
-            authDomain: "projectId.firebaseapp.com",
-            projectId: "projectId",
-            storageBucket: "projectId.appspot.com",
-            messagingSenderId: "...",
-            appId: "..."
+            apiKey: "AIzaSyAhx6NXJxy1VnkpS4YQRZhlsQxVf9aoYBQ",
+            authDomain: "undangan-79348.firebaseapp.com",
+            projectId: "undangan-79348",
+            storageBucket: "undangan-79348.firebasestorage.app",
+            messagingSenderId: "996661455345",
+            appId: "1:996661455345:web:51b18b8efa35d5e3f63c50"
         };
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
+        // --- TEMPLATE DATA (Dihapus karena tema sudah fixed) ---
+        // Sediakan hanya data default agar CSS root dapat di-set
+        const defaultTemplateSettings = {
+            primary: '#4E342E',
+            secondary: '#FAF0E6',
+            accent: '#CC9900',
+            fontTitle: 'Playfair Display, serif',
+            fontBody: 'Inter, sans-serif',
+            bgMotif: "url('batik_motif.png')",
+            dividerOpacity: '1',
+        };
+        
         // --- FIREBASE INITIALIZATION ---
         let app, db, auth, userId;
         
@@ -482,33 +452,42 @@
                 
                 userId = auth.currentUser?.uid || crypto.randomUUID();
                 console.log("Firebase initialized. User ID:", userId);
-
-                // Setelah Firebase siap, mulai mendengarkan Ucapan/Wishes
                 setupWishesListener();
-
             } catch (error) {
                 console.error("Error initializing Firebase or signing in:", error);
                 document.getElementById('formStatus').textContent = "Terjadi kesalahan saat menghubungkan ke database.";
             }
         }
-
+        
+        // --- TEMPLATE SWITCHING LOGIC (Disimpan sebagai fungsi inisialisasi CSS) ---
+        const root = document.documentElement;
+        
+        function applyDefaultTemplate() {
+            const template = defaultTemplateSettings;
+            
+            // Update CSS Variables (Colors & Fonts)
+            root.style.setProperty('--primary-color', template.primary);
+            root.style.setProperty('--secondary-color', template.secondary);
+            root.style.setProperty('--accent-color', template.accent);
+            root.style.setProperty('--font-title', template.fontTitle);
+            root.style.setProperty('--font-body', template.fontBody);
+            root.style.setProperty('--bg-motif', template.bgMotif);
+            root.style.setProperty('--title-divider-opacity', template.dividerOpacity);
+        }
+        
         // --- CORE APPLICATION LOGIC ---
         
-        // 1. URL Parameter Parsing (Nama Tamu)
         function getGuestName() {
             const urlParams = new URLSearchParams(window.location.search);
-            // Mengambil parameter 'to', jika tidak ada, gunakan 'Tamu'
             let name = urlParams.get('to') || 'Tamu Undangan';
-            // Membersihkan nama dari karakter non-alfanumerik atau kode berbahaya (basic sanitization)
             name = name.replace(/</g, "&lt;").replace(/>/g, "&gt;"); 
             return name;
         }
 
         const guestName = getGuestName();
         document.getElementById('guestNameDisplay').textContent = guestName;
-        document.getElementById('guestNameInput').value = guestName; // Isi otomatis form
+        document.getElementById('guestNameInput').value = guestName; 
 
-        // 2. Music and Modal Handling
         const welcomeModal = document.getElementById('welcomeModal');
         const mainContent = document.getElementById('mainContent');
         const openButton = document.getElementById('openInvitationButton');
@@ -523,17 +502,13 @@
                 musicIcon.classList.remove('rotating');
                 isPlaying = false;
             } else {
-                audio.play().catch(error => {
-                    console.error("Autoplay prevented:", error);
-                    // Jika autoplay gagal (umum di browser modern), biarkan icon tetap berputar
-                });
+                audio.play().catch(error => { console.error("Autoplay prevented:", error); });
                 musicIcon.classList.add('rotating');
                 isPlaying = true;
             }
         }
 
         openButton.addEventListener('click', () => {
-            // Sembunyikan Modal dengan transisi
             welcomeModal.style.opacity = '0';
             welcomeModal.style.transform = 'translateY(-20px)';
             
@@ -541,36 +516,27 @@
                 welcomeModal.classList.add('hidden');
                 mainContent.classList.remove('hidden');
                 musicButton.classList.remove('hidden');
-                
-                // Mulai mainkan musik saat undangan dibuka
                 toggleMusic(); 
-                
-                // Scroll ke bagian sampul
                 document.getElementById('sampul').scrollIntoView({ behavior: 'smooth' });
             }, 500);
         });
 
         musicButton.addEventListener('click', toggleMusic);
 
-        // 3. Countdown Timer Logic
-        // Diperbarui ke 22 Oktober 2025, 08:00 WIB
         const targetDate = new Date('2025-10-22T08:00:00').getTime(); 
-
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold text-purple-600'>ACARA SEDANG BERLANGSUNG!</p>";
+                document.getElementById("countdown").innerHTML = "<p class='text-2xl font-bold' style='color: var(--primary-color);'>ACARA SEDANG BERLANGSUNG!</p>";
                 clearInterval(countdownInterval);
                 return;
             }
-
             document.getElementById("days").textContent = String(days).padStart(2, '0');
             document.getElementById("hours").textContent = String(hours).padStart(2, '0');
             document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
@@ -578,12 +544,10 @@
         }
 
         const countdownInterval = setInterval(updateCountdown, 1000);
-        updateCountdown(); // Call immediately to avoid delay
+        updateCountdown(); 
 
-        // 4. Clipboard Function (Copy Rekening / Alamat)
         window.copyToClipboard = function(elementId, button) {
             const element = document.getElementById(elementId);
-            // Untuk alamat, kita ambil teksnya secara lengkap
             const textToCopy = element.textContent.trim(); 
             
             const tempInput = document.createElement("textarea");
@@ -593,13 +557,11 @@
             document.execCommand('copy');
             document.body.removeChild(tempInput);
             
-            // Tentukan pesan yang ditampilkan
             const isAddress = elementId === 'alamatKado';
             const messageText = isAddress ? "Alamat berhasil disalin!" : "Nomor rekening berhasil disalin!";
 
             showMessageBox(messageText, 2000);
             
-            // Ubah teks tombol sebentar
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
             setTimeout(() => {
@@ -616,71 +578,40 @@
             setTimeout(() => {
                 box.classList.remove('opacity-100');
                 box.classList.add('opacity-0');
-                setTimeout(() => box.classList.add('hidden'), 300); // Tunggu transisi
+                setTimeout(() => box.classList.add('hidden'), 300); 
             }, duration);
         }
         
-        // 4B. Toggle QR Code Visibility
-        window.toggleQR = function(qrId, button) {
-            const qrDiv = document.getElementById(qrId);
-            const isHidden = qrDiv.classList.contains('hidden');
-            
-            if (isHidden) {
-                qrDiv.classList.remove('hidden');
-                button.innerHTML = '<i class="fas fa-qrcode mr-1"></i> Sembunyikan Barcode';
-            } else {
-                qrDiv.classList.add('hidden');
-                button.innerHTML = '<i class="fas fa-qrcode mr-1"></i> Tampilkan Barcode';
-            }
-        }
+        // Fungsi Toggle QR Dihapus
 
-
-        // 5. FIREBASE: Submit RSVP and Wish
         const rsvpForm = document.getElementById('rsvpForm');
         const submitButton = document.getElementById('submitButton');
         const formStatus = document.getElementById('formStatus');
 
         rsvpForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!db) {
-                formStatus.textContent = "Database belum siap. Coba lagi.";
-                formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600';
-                return;
-            }
+            if (!db) { formStatus.textContent = "Database belum siap. Coba lagi."; formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600'; return; }
 
             const name = document.getElementById('guestNameInput').value.trim();
             const attendance = document.getElementById('attendance').value;
             const message = document.getElementById('message').value.trim();
             
-            if (!name || !attendance || !message) {
-                formStatus.textContent = "Mohon isi semua kolom.";
-                formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600';
-                return;
-            }
+            if (!name || !attendance || !message) { formStatus.textContent = "Mohon isi semua kolom."; formStatus.className = 'mt-4 text-center text-sm font-medium text-red-600'; return; }
 
             submitButton.disabled = true;
             submitButton.textContent = 'Mengirim...';
             formStatus.textContent = '';
 
             try {
-                // Gunakan nama tamu sebagai ID dokumen unik untuk mencegah duplikasi pengiriman dari satu orang
-                // Path: /artifacts/{appId}/public/data/wedding_wishes/{GuestName_sanitized}
                 const docRefId = name.replace(/\s+/g, '_').toLowerCase();
                 const docPath = doc(db, `artifacts/${appId}/public/data/wedding_wishes`, docRefId);
 
-                await setDoc(docPath, {
-                    name: name,
-                    attendance: attendance,
-                    message: message,
-                    timestamp: new Date().toISOString(),
-                    // Tambahkan userId untuk identifikasi siapa yang mengirim (meskipun namanya unik)
-                    senderId: userId 
-                });
+                await setDoc(docPath, { name: name, attendance: attendance, message: message, timestamp: new Date().toISOString(), senderId: userId });
 
                 formStatus.textContent = "Konfirmasi dan Ucapan berhasil dikirim! Terima kasih.";
                 formStatus.className = 'mt-4 text-center text-sm font-medium text-green-600';
                 rsvpForm.reset();
-                document.getElementById('guestNameInput').value = name; // Isi kembali nama tamu
+                document.getElementById('guestNameInput').value = name; 
             } catch (error) {
                 console.error("Error submitting document: ", error);
                 formStatus.textContent = `Gagal mengirim. Error: ${error.message}`;
@@ -691,22 +622,15 @@
             }
         });
 
-        // 6. FIREBASE: Listen for Wishes (Guest Book)
         const wishesList = document.getElementById('wishesList');
 
         function setupWishesListener() {
-            // Path: /artifacts/{appId}/public/data/wedding_wishes
             const q = query(collection(db, `artifacts/${appId}/public/data/wedding_wishes`));
 
             onSnapshot(q, (snapshot) => {
                 const wishes = [];
-                snapshot.forEach((doc) => {
-                    wishes.push(doc.data());
-                });
-
-                // Sort by timestamp (newest first)
+                snapshot.forEach((doc) => { wishes.push(doc.data()); });
                 wishes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                
                 renderWishes(wishes);
             }, (error) => {
                 console.error("Error fetching wishes:", error);
@@ -715,7 +639,7 @@
         }
 
         function renderWishes(wishes) {
-            wishesList.innerHTML = ''; // Clear existing list
+            wishesList.innerHTML = ''; 
             document.getElementById('loadingWishes')?.remove();
 
             if (wishes.length === 0) {
@@ -726,7 +650,6 @@
             wishes.forEach(wish => {
                 const date = new Date(wish.timestamp);
                 const formattedDate = date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-                
                 const attendanceIcon = wish.attendance === 'Hadir' 
                     ? '<i class="fas fa-check-circle text-green-500 mr-2"></i> Hadir' 
                     : '<i class="fas fa-times-circle text-red-500 mr-2"></i> Tidak Hadir';
@@ -748,6 +671,8 @@
         // --- START APP ---
         window.addEventListener('load', () => {
             initializeFirebase();
+            // Terapkan tema default (Jawa)
+            applyDefaultTemplate(); 
         });
 
     </script>
